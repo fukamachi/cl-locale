@@ -1,6 +1,6 @@
 (in-package :cl-locale-test)
 
-(plan 4)
+(plan 5)
 
 (deftest i18n
     (setf cl-test-more::*default-test-function* #'string=)
@@ -13,6 +13,10 @@
   (is (i18n "Schedule") "予定" "ja-JP (default locale)")
   (is (i18n "Schedule" :locale :ja-JP) "予定" "ja-JP")
   (is (i18n "Schedule" :locale :fr-FR) "Calendrier" "fr-FR")
+
+  (define-dictionary "lisp" (merge-pathnames #p"dictionary.lisp" *load-pathname*))
+  (setf *dictionary-name* "lisp")
+  (is (i18n "Lisping" :locale :ja-JP) "舌足らず" "load from file")
   )
 
 (run-test-all)

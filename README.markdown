@@ -2,7 +2,7 @@
 
 ## Usage
 
-    (load-dictionary #p"i18n/messages.lisp")
+    (define-dictionary "sche" #p"i18n/messages.lisp")
     (i18n "Schedule")
     ;;=> "Schedule"
     (i18n "Schedule" :locale :ja-JP)
