@@ -3,6 +3,6 @@
 (defpackage cl-locale
   (:use :cl)
   (:export :i18n
-           :make-dictionary :load-dictionary
+           :define-dictionary
            :*default-locale* :*locale* :*locales*
-           :*dictionary*))
+           :*dictionary-name* :*dictionaries*))

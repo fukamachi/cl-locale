@@ -1,23 +1,24 @@
 (in-package :cl-locale)
 
-(defun make-dictionary (dict-list)
-  (loop for (word . plist) in dict-list
-        do (setf (gethash word *dictionary*) plist)
-           (loop for locale in plist by #'cddr do (pushnew locale *locales*))))
+(defun define-dictionary (name dict-list)
+  (loop with hash = (make-hash-table :test 'equal)
+        for (word . plist) in dict-list
+        do (setf (gethash word hash) plist)
+           (loop for locale in plist by #'cddr do (pushnew locale *locales*))
+        finally (setf (gethash name *dictionaries*) hash)))
 
-(defun slurp-stream (stream)
-  (let ((seq (make-string (file-length stream))))
-    (read-sequence seq stream)
-    seq))
+(defmacro aif (test then &optional else)
+  `(let ((it ,test))
+     (if it ,then ,else)))
 
-(defun load-dictionary (dict-file)
-  (with-open-file (stream dict-file)
-    (make-dictionary (read-from-string (slurp-stream stream)))))
+(defmacro aand (&rest args)
+  (cond ((null args) t)
+        ((null (cdr args)) (car args))
+        (t `(aif ,(car args) (aand ,@(cdr args))))))
 
-(defun i18n (string &key (locale *locale*))
-  (if (eq locale *default-locale*)
-      string
-      (let ((plist (gethash string *dictionary*)))
-        (if plist
-            (or (getf plist locale) string)
-            string))))
+(defun i18n (string &key (locale *locale*) (dictionary *dictionary-name*))
+  (or (aand (not (eq locale *default-locale*))
+            (gethash dictionary *dictionaries*)
+            (gethash string it)
+            (getf it locale))
+      string))
