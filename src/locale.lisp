@@ -1,5 +1,27 @@
+(in-package :cl-user)
+(defpackage cl-locale
+  (:use :cl
+        :cl-syntax)
+  (:import-from :arnesi
+                :aif
+                :aand
+                :it))
 (in-package :cl-locale)
 
+(use-syntax cl-syntax-annot:annot-syntax)
+
+@export
+(defvar *default-locale* :en-US)
+@export
+(defvar *locale* nil)
+@export
+(defvar *locales* nil)
+@export
+(defvar *dictionary-name* nil)
+@export
+(defvar *dictionaries* (make-hash-table :test 'equal))
+
+@export
 (defmethod define-dictionary (name (dict cons))
   (loop with hash = (make-hash-table :test 'equal)
         for (word . plist) in dict
@@ -12,19 +34,12 @@
     (read-sequence seq stream)
     seq))
 
+@export
 (defmethod define-dictionary (name (dict pathname))
   (with-open-file (stream dict)
     (define-dictionary name (read-from-string (slurp-stream stream)))))
 
-(defmacro aif (test then &optional else)
-  `(let ((it ,test))
-     (if it ,then ,else)))
-
-(defmacro aand (&rest args)
-  (cond ((null args) t)
-        ((null (cdr args)) (car args))
-        (t `(aif ,(car args) (aand ,@(cdr args))))))
-
+@export
 (defun i18n (string &key (locale *locale*) (dictionary *dictionary-name*))
   (or (aand (not (eq locale *default-locale*))
             (gethash dictionary *dictionaries*)

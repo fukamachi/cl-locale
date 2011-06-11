@@ -8,9 +8,11 @@
 (defsystem cl-locale
   :version "0.1"
   :author "Eitarow Fukamachi"
+  :depends-on (:arnesi
+               :cl-annot
+               :cl-syntax
+               :cl-syntax-annot)
   :license "LLGPL"
   :components ((:module "src"
                 :serial t
-                :components ((:file "package")
-                             (:file "special")
-                             (:file "locale")))))
+                :components ((:file "locale")))))

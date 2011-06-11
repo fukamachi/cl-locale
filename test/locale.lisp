@@ -1,3 +1,8 @@
+(in-package :cl-user)
+(defpackage cl-locale-test
+  (:use :cl
+        :cl-locale
+        :cl-test-more))
 (in-package :cl-locale-test)
 
 (plan 5)
@@ -14,7 +19,9 @@
   (is (i18n "Schedule" :locale :ja-JP) "予定" "ja-JP")
   (is (i18n "Schedule" :locale :fr-FR) "Calendrier" "fr-FR")
 
-  (define-dictionary "lisp" (merge-pathnames #p"dictionary.lisp" *load-pathname*))
+  (define-dictionary "lisp" (asdf:system-relative-pathname
+                             :cl-locale
+                             #p"test/dictionary.lisp"))
   (setf *dictionary-name* "lisp")
   (is (i18n "Lisping" :locale :ja-JP) "舌足らず" "load from file")
   )

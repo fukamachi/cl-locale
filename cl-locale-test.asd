@@ -8,6 +8,6 @@
 (defsystem cl-locale-test
   :depends-on (:cl-locale :cl-test-more)
   :components ((:module "test"
-                        :serial t
-                        :components ((:file "package")
-                                     (:file "locale")))))
+                :serial t
+                :components
+                ((:file "locale")))))
