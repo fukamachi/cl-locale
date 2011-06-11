@@ -35,7 +35,7 @@
   (case ch
     (#\" `(i18n ,(read-lisp-string stream)))
     (#\( (let ((body (read-delimited-list #\) stream)))
-           `(i18n ,(car body) :params ',(cdr body))))
+           `(i18n ,(car body) :params (list ,@(cdr body)))))
     (t (error "i18n reader must precede a double-quoted string.: ~A" ch)))))
 
 (defun %enable-locale-syntax ()
