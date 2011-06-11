@@ -1,20 +1,34 @@
-# CL-LOCALE - Simple i18n library for Common Lisp
+# CL-Locale - Simple i18n library for Common Lisp
 
 ## Usage
 
-    (define-dictionary "sche" #p"i18n/messages.lisp")
+    (define-dictionary schedule
+      (:ja-JP #p"i18n/ja_JP/message.lisp")
+      (:fr-FR #p"i18n/fr_FR/message.lisp"))
+    
+    (define-dictionary lisp
+      (:ja-JP #p"i18n/ja_JP/message.lisp"))
+    
+    (setf *dictionary* :schedule)
+    
     (i18n "Schedule")
-    ;;=> "Schedule"
+    ;=> "Schedule"
+    
     (i18n "Schedule" :locale :ja-JP)
-    ;;=> "予定"
+    ;=> "予定"
+    
     (let ((*locale* :fr-FR))
-      (i18n "Calendrier"))
-    ;;=> "予定"
+      (i18n "Schedule"))
+    ;=> "Calendrier"
 
 ## Dictionary Resource
 
-    (("Schedule" :ja-JP "予定" :fr-FR "Calendrier")
-     ("Lisping" :ja-JP "舌足らず"))
+    ; ja_JP/message.lisp
+    (("Schedule" . "予定")
+     ("Lisping" . "舌足らず"))
+    
+    ; fr_FR/message.lisp
+    (("Schedule" . "Calendrier"))
 
 ## License
 

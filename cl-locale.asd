@@ -20,7 +20,8 @@
 (defsystem cl-locale
   :version "0.1"
   :author "Eitarow Fukamachi"
-  :depends-on (:arnesi
+  :depends-on (:anaphora
+               :arnesi
                :cl-annot
                :cl-syntax
                :cl-syntax-annot)
