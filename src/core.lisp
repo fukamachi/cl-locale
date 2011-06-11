@@ -57,7 +57,8 @@ Example:
 
 (defun slurp-file (path)
   "Read a specified file and return the content as a sequence."
-  (with-open-file (stream path :direction :input)
+  (with-open-file (stream path :direction :input
+                          :external-format :utf-8)
     (let ((seq (make-array (file-length stream) :element-type 'character :fill-pointer t)))
       (setf (fill-pointer seq) (read-sequence seq stream))
       seq)))
