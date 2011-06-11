@@ -6,8 +6,8 @@
 (in-package :cl-locale-test-asd)
 
 (defsystem cl-locale-test
-  :depends-on (:cl-locale :cl-test-more)
-  :components ((:module "test"
-                :serial t
+  :depends-on (:cl-locale
+               :cl-test-more)
+  :components ((:module "t"
                 :components
                 ((:file "locale")))))
