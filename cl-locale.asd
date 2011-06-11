@@ -27,7 +27,6 @@
                :cl-syntax-annot)
   :license "LLGPL"
   :components ((:module "src"
-                :serial t
                 :components ((:file "locale"))))
   :description "Simple i18n library for Common Lisp"
   :long-description

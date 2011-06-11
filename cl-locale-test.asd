@@ -13,6 +13,8 @@
 
 (defsystem cl-locale-test
   :depends-on (:cl-locale
+               :cl-locale-syntax
+               :cl-syntax
                :cl-test-more)
   :components ((:module "t"
                 :components

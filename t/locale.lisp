@@ -2,8 +2,12 @@
 (defpackage cl-locale-test
   (:use :cl
         :cl-locale
+        :cl-locale-syntax
+        :cl-syntax
         :cl-test-more))
 (in-package :cl-locale-test)
+
+(use-syntax cl-locale-syntax)
 
 (plan 5)
 
@@ -31,5 +35,7 @@
            #p"t/i18n/fr_FR.lisp")))
 
 (is (i18n "Lisping" :locale :ja-JP) "舌足らず" "load from file")
+
+(is #i"Lisping" "舌足らず")
 
 (finalize)
