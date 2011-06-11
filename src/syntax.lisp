@@ -12,8 +12,8 @@
         :cl-syntax)
   (:import-from :cl-locale.reader
                 :locale-syntax-reader)
-  (:export :cl-locale-syntax))
+  (:export :locale-syntax))
 (in-package :cl-locale-syntax)
 
-(defsyntax cl-locale-syntax
+(defsyntax locale-syntax
   (:dispatch-macro-character #\# #\i #'locale-syntax-reader))
