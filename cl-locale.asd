@@ -27,7 +27,9 @@
                :cl-syntax-annot)
   :license "LLGPL"
   :components ((:module "src"
-                :components ((:file "locale"))))
+                :components ((:file "locale" :depends-on ("core" "reader"))
+                             (:file "core")
+                             (:file "reader" :depends-on ("core")))))
   :description "Simple i18n library for Common Lisp"
   :long-description
   #.(with-open-file (stream (merge-pathnames
