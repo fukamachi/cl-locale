@@ -2,6 +2,8 @@
 
 ## Usage
 
+    (cl-locale:enable-locale-syntax)
+    
     (define-dictionary schedule
       (:ja-JP #p"i18n/ja_JP/message.lisp")
       (:fr-FR #p"i18n/fr_FR/message.lisp"))
@@ -9,16 +11,16 @@
     (define-dictionary lisp
       (:ja-JP #p"i18n/ja_JP/message.lisp"))
     
-    (setf *dictionary* :schedule)
+    (setf (current-dictionary) :schedule)
     
-    (i18n "Schedule")
+    #i"Schedule"
     ;=> "Schedule"
     
     (i18n "Schedule" :locale :ja-JP)
     ;=> "予定"
     
     (let ((*locale* :fr-FR))
-      (i18n "Schedule"))
+      #i"Schedule")
     ;=> "Calendrier"
 
 ## Dictionary Resource
