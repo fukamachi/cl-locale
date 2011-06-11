@@ -83,8 +83,10 @@ Example:
   (setf *dictionary* (ensure-dictionary name)))
 
 @export
-(defun i18n (string &key (locale *locale*) (dictionary (current-dictionary)))
-  (or (aand (not (eq locale *default-locale*))
-            (gethash locale dictionary)
-            (gethash string arnesi:it))
-      string))
+(defun i18n (string &key params (locale *locale*) (dictionary (current-dictionary)))
+  (apply #'format nil
+         (or (aand (not (eq locale *default-locale*))
+                   (gethash locale dictionary)
+                   (gethash string arnesi:it))
+             string)
+         params))

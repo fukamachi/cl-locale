@@ -15,7 +15,8 @@
   :depends-on (:cl-locale
                :cl-locale-syntax
                :cl-syntax
-               :cl-test-more)
+               :cl-test-more
+               :flexi-streams)
   :components ((:module "t"
                 :components
                 ((:file "locale")))))

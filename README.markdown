@@ -22,6 +22,9 @@
     (let ((*locale* :fr-FR))
       #i"Schedule")
     ;=> "Calendrier"
+    
+    #i("Comments: ~A" 10)
+    ;=> "コメント: 10個"
 
 ## Dictionary Resource
 

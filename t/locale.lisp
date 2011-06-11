@@ -7,9 +7,9 @@
         :cl-test-more))
 (in-package :cl-locale-test)
 
-(use-syntax cl-locale-syntax)
+(use-syntax locale-syntax)
 
-(plan 5)
+(plan 8)
 
 (setf *dictionary-tables* (make-hash-table :test 'equal))
 (setf *locale* :en-US)
@@ -34,8 +34,19 @@
            :cl-locale
            #p"t/i18n/fr_FR.lisp")))
 
-(is (i18n "Lisping" :locale :ja-JP) "舌足らず" "load from file")
-
-(is #i"Lisping" "舌足らず")
+(let ((jp-mean
+       (flex:octets-to-string #(232 136 140 232 182 179 227 130 137 227 129 154)
+        :external-format :utf-8)))
+  (is (i18n "Lisping" :locale :ja-JP)
+      jp-mean
+      "load from file")
+  (is #i"Lisping" jp-mean "with reader macro"))
+(let ((jp-mean
+       (flex:octets-to-string #(67 111 109 109 111 110 32 227 130 138 227 129 153 227 129 183)
+        :external-format :utf-8)))
+  (is (i18n "~A Lisp" :params '("Common") :locale :ja-JP) jp-mean
+      "format-control string")
+  (is #i("~A Lisp" "Common") jp-mean
+      "format-control string with reader macro"))
 
 (finalize)

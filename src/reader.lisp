@@ -31,9 +31,12 @@
 
 (defun locale-syntax-reader (stream char arg)
   (declare (ignore arg char))
-  (if (char= #\" (read-char stream))
-      `(i18n ,(read-lisp-string stream))
-      (error "i18n reader must precede a double-quoted string.")))
+  (let ((ch (read-char stream)))
+  (case ch
+    (#\" `(i18n ,(read-lisp-string stream)))
+    (#\( (let ((body (read-delimited-list #\) stream)))
+           `(i18n ,(car body) :params ',(cdr body))))
+    (t (error "i18n reader must precede a double-quoted string.: ~A" ch)))))
 
 (defun %enable-locale-syntax ()
   (setf *readtable* (copy-readtable))
