@@ -8,12 +8,11 @@
 
 (in-package :cl-user)
 (defpackage cl-locale-syntax
-  (:use :cl
-        :cl-syntax)
+  (:use :cl)
   (:import-from :cl-locale.reader
-                :locale-syntax-reader)
-  (:export :locale-syntax))
+                :locale-syntax-reader))
 (in-package :cl-locale-syntax)
 
-(defsyntax locale-syntax
-  (:dispatch-macro-character #\# #\i #'locale-syntax-reader))
+(syntax:define-package-syntax :cl-locale
+  (:merge :standard)
+  (:dispatch-macro-char #\# #\i #'locale-syntax-reader))

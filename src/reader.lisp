@@ -13,7 +13,7 @@
         :cl-locale.core))
 (in-package :cl-locale.reader)
 
-(use-syntax cl-syntax-annot:annot-syntax)
+(use-syntax :annot)
 
 (defun read-lisp-string (input)
   "Parse a Lisp string. Expects “input” to point to the

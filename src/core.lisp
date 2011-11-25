@@ -15,7 +15,7 @@
                           :aand))
 (in-package :cl-locale.core)
 
-(use-syntax cl-syntax-annot:annot-syntax)
+(use-syntax :annot)
 
 @export
 (defvar *default-locale* :en-US)
