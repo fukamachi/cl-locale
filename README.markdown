@@ -26,6 +26,11 @@
     #i("Comments: ~A" 10)
     ;=> "コメント: 10個"
 
+## What the difference
+
+* cl-i18n: Does nit support loading multiple locales at the same time.
+* cl-l10n: No reader macro predefined. No tools to automatically generate localizable files / language files.
+
 ## Dictionary Resource
 
     ; ja_JP/message.lisp
