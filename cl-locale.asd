@@ -24,13 +24,13 @@
                :arnesi
                :cl-annot
                :cl-syntax
-               :cl-syntax-annot
-               :named-readtables)
+               :cl-syntax-annot)
   :license "LLGPL"
   :components ((:module "src"
-                :components ((:file "locale" :depends-on ("core" "reader"))
+                :components ((:file "locale" :depends-on ("core" "reader" "syntax"))
                              (:file "core")
-                             (:file "reader" :depends-on ("core")))))
+                             (:file "reader" :depends-on ("core"))
+                             (:file "syntax" :depends-on ("reader")))))
   :description "Simple i18n library for Common Lisp"
   :long-description
   #.(with-open-file (stream (merge-pathnames

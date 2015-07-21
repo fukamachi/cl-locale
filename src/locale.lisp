@@ -10,7 +10,8 @@
 (defpackage cl-locale
   (:use :cl
         :cl-locale.core
-        :cl-locale.reader)
+        :cl-locale.reader
+        :cl-locale.syntax)
   (:export :*default-locale*
            :*locale*
            :*dictionary-tables*
@@ -19,4 +20,4 @@
            :current-dictionary
            :i18n
            :enable-locale-syntax
-           :cl-locale-readtable))
+           :locale-syntax))

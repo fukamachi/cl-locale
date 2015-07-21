@@ -7,12 +7,12 @@
 |#
 
 (in-package :cl-user)
-(defpackage cl-locale-syntax
+(defpackage cl-locale.syntax
   (:use :cl)
   (:import-from :cl-locale.reader
                 :locale-syntax-reader))
-(in-package :cl-locale-syntax)
+(in-package :cl-locale.syntax)
 
-(syntax:define-package-syntax :cl-locale
+(syntax:defsyntax locale-syntax
   (:merge :standard)
   (:dispatch-macro-char #\# #\i #'locale-syntax-reader))
