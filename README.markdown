@@ -1,4 +1,7 @@
 # CL-Locale - Simple i18n library for Common Lisp
+[![Build Status](https://travis-ci.org/fukamachi/cl-locale.svg?branch=master)](https://travis-ci.org/fukamachi/cl-locale)
+[![Coverage Status](https://coveralls.io/repos/fukamachi/cl-locale/badge.svg?branch=master)](https://coveralls.io/r/fukamachi/cl-locale?branch=master)
+
 
 ## Usage
 
