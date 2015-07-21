@@ -18,4 +18,5 @@
            :define-dictionary
            :current-dictionary
            :i18n
-           :enable-locale-syntax))
+           :enable-locale-syntax
+           :cl-locale-readtable))

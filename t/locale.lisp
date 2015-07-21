@@ -7,7 +7,7 @@
         :cl-test-more))
 (in-package :cl-locale-test)
 
-(use-syntax locale-syntax)
+(named-readtables:in-readtable cl-locale-readtable)
 
 (plan 8)
 
