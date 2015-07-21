@@ -18,7 +18,7 @@
 (in-package :cl-locale-asd)
 
 (defsystem cl-locale
-  :version "0.1"
+  :version "0.1.1"
   :author "Eitarow Fukamachi"
   :depends-on (:anaphora
                :arnesi
