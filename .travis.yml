@@ -3,8 +3,7 @@ sudo: required
 
 env:
   matrix:
-    - LISP=sbcl COVERALLS=true
-    - LISP=ccl
+    - LISP=ccl COVERALLS=true
 
 install:
   - curl https://raw.githubusercontent.com/luismbo/cl-travis/master/install.sh | sh;
