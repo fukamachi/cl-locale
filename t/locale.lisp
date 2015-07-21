@@ -2,9 +2,9 @@
 (defpackage cl-locale-test
   (:use :cl
         :cl-locale
-        :cl-locale-syntax
-        :cl-syntax
-        :cl-test-more))
+        ;;:cl-locale-syntax
+        ;;:cl-syntax
+        :prove))
 (in-package :cl-locale-test)
 
 (named-readtables:in-readtable cl-locale-readtable)
