@@ -24,7 +24,8 @@
                :arnesi
                :cl-annot
                :cl-syntax
-               :cl-syntax-annot)
+               :cl-syntax-annot
+               :named-readtables)
   :license "LLGPL"
   :components ((:module "src"
                 :components ((:file "locale" :depends-on ("core" "reader"))

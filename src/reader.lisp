@@ -10,7 +10,10 @@
 (defpackage cl-locale.reader
   (:use :cl
         :cl-syntax
-        :cl-locale.core))
+        :cl-locale.core)
+  (:import-from :named-readtables
+                :defreadtable)
+  (:export cl-locale-readtable))
 (in-package :cl-locale.reader)
 
 (use-syntax :annot)
@@ -32,3 +35,7 @@
 (defmacro enable-locale-syntax ()
   '(eval-when (:compile-toplevel :load-toplevel :execute)
     (%enable-locale-syntax)))
+
+(defreadtable cl-locale-readtable
+  (:merge :standard)
+  (:dispatch-macro-char #\# #\i #'locale-syntax-reader))
