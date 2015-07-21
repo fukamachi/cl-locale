@@ -26,7 +26,7 @@
 
 (defun %enable-locale-syntax ()
   (setf *readtable* (copy-readtable))
-  (set-macro-character #\@ #'locale-syntax-reader))
+  (set-dispatch-macro-character #\# #\i #'locale-syntax-reader))
 
 @export
 (defmacro enable-locale-syntax ()
