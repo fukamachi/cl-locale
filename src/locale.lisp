@@ -20,4 +20,6 @@
            :current-dictionary
            :i18n
            :enable-locale-syntax
-           :locale-syntax))
+           :locale-syntax
+           :i18n-reader
+           :l10n-reader))

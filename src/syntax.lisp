@@ -10,11 +10,12 @@
 (defpackage cl-locale.syntax
   (:use :cl)
   (:import-from :cl-locale.reader
-                :locale-syntax-reader)
+                :i18n-reader
+                :l10n-reader)
   (:export :locale-syntax))
 (in-package :cl-locale.syntax)
 
 (syntax:defsyntax locale-syntax
   (:merge :standard)
-  (:dispatch-macro-char #\# #\i #'locale-syntax-reader)
+  (:dispatch-macro-char #\# #\i #'i18n-reader)
   (:dispatch-macro-char #\# #\l #'l10n-reader))
