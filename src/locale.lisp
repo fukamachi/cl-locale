@@ -19,6 +19,7 @@
            :define-dictionary
            :current-dictionary
            :i18n
+           :l10n
            :enable-locale-syntax
            :locale-syntax
            :i18n-reader

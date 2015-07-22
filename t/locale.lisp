@@ -8,22 +8,28 @@
 
 (named-readtables:in-readtable locale-syntax)
 
-(plan 8)
+(plan 13)
 
 (setf *dictionary-tables* (make-hash-table :test 'equal))
 (setf *locale* :en-US)
 
 (define-dictionary schedule
-  (:ja-JP '(("Schedule" . "予定")))
-  (:fr-FR '(("Schedule" . "Calendrier"))))
+  (:ja-JP '(("Schedule" . "予定")
+            ("date-format" . (:year "." :month "." :day))))
+  (:fr-FR '(("Schedule" . "Calendrier")
+            ("date-format" . (:day "-" :month "-" :year)))))
 
 (is (i18n "Schedule") "Schedule" "en-US (default locale)")
 
 (setf *locale* :ja-JP)
 
 (is (i18n "Schedule") "予定" "ja-JP (default locale)")
-(is (i18n "Schedule" :locale :ja-JP) "予定" "ja-JP")
-(is (i18n "Schedule" :locale :fr-FR) "Calendrier" "fr-FR")
+(is (i18n "Schedule" :locale :ja-JP) "予定" "ja-JP i18n")
+(is (i18n "Schedule" :locale :fr-FR) "Calendrier" "fr-FR i18n")
+
+(is (l10n "date-format") '(:year "." :month "." :day))
+(is (l10n "date-format" :locale :ja-JP) '(:year "." :month "." :day) "ja-JP l10n")
+(is (l10n "date-format" :locale :fr-FR) '(:day "-" :month "-" :year) "fr-FR l10n")
 
 (define-dictionary lisp
   (:ja-JP (asdf:system-relative-pathname
@@ -35,11 +41,18 @@
 
 (let ((jp-mean
        (flex:octets-to-string #(232 136 140 232 182 179 227 130 137 227 129 154)
-        :external-format :utf-8)))
+        :external-format :utf-8))
+      (jp-format '(:year "." :month "." :day)))
   (is (i18n "Lisping" :locale :ja-JP)
       jp-mean
-      "load from file")
-  (is #i"Lisping" jp-mean "with reader macro"))
+      "i18n load from file")
+  (is #i"Lisping" jp-mean "i18n with reader macro")
+
+  (is (l10n "date-format" :locale :ja-JP)
+      jp-format
+      "l10n load from file")
+  (is #l"date-format" jp-format "l10n with reader macro"))
+
 (let ((jp-mean
        (flex:octets-to-string #(67 111 109 109 111 110 32 227 130 138 227 129 153 227 129 183)
         :external-format :utf-8)))
