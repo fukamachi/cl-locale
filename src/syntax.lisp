@@ -10,7 +10,8 @@
 (defpackage cl-locale.syntax
   (:use :cl)
   (:import-from :cl-locale.reader
-                :locale-syntax-reader))
+                :locale-syntax-reader)
+  (:export :locale-syntax))
 (in-package :cl-locale.syntax)
 
 (syntax:defsyntax locale-syntax

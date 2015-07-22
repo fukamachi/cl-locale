@@ -6,7 +6,7 @@
         :prove))
 (in-package :cl-locale-test)
 
-(use-syntax :locale-syntax)
+(named-readtables:in-readtable locale-syntax)
 
 (plan 8)
 
