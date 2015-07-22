@@ -16,4 +16,5 @@
 
 (syntax:defsyntax locale-syntax
   (:merge :standard)
-  (:dispatch-macro-char #\# #\i #'locale-syntax-reader))
+  (:dispatch-macro-char #\# #\i #'locale-syntax-reader)
+  (:dispatch-macro-char #\# #\l #'l10n-reader))
