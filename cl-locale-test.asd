@@ -18,7 +18,7 @@
                :prove)
   :components ((:module "t"
                 :components
-                ((:file "locale"))))
+                ((:test-file "locale"))))
   :description "Test system for cl-locale."
   :defsystem-depends-on (:prove-asdf)
   :perform (test-op :after (op c)
