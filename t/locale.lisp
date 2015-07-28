@@ -27,9 +27,9 @@
 (is (i18n "Schedule" :locale :ja-JP) "予定" "ja-JP i18n")
 (is (i18n "Schedule" :locale :fr-FR) "Calendrier" "fr-FR i18n")
 
-(is (l10n "date-format") '(:year "." :month "." :day))
-(is (l10n "date-format" :locale :ja-JP) '(:year "." :month "." :day) "ja-JP l10n")
-(is (l10n "date-format" :locale :fr-FR) '(:day "-" :month "-" :year) "fr-FR l10n")
+(is (i18n-unformatted "date-format") '(:year "." :month "." :day))
+(is (i18n-unformatted "date-format" :locale :ja-JP) '(:year "." :month "." :day) "ja-JP i18n-unformatted")
+(is (i18n-unformatted "date-format" :locale :fr-FR) '(:day "-" :month "-" :year) "fr-FR i18n-unformatted")
 
 (define-dictionary lisp
   (:ja-JP (asdf:system-relative-pathname
@@ -48,10 +48,10 @@
       "i18n load from file")
   (is #i"Lisping" jp-mean "i18n with reader macro")
 
-  (is (l10n "date-format" :locale :ja-JP)
+  (is (i18n-unformatted "date-format" :locale :ja-JP)
       jp-format
-      "l10n load from file")
-  (is #l"date-format" jp-format "l10n with reader macro"))
+      "i18n-unformatted load from file")
+  (is #l"date-format" jp-format "i18n-unformatted with reader macro"))
 
 (let ((jp-mean
        (flex:octets-to-string #(67 111 109 109 111 110 32 227 130 138 227 129 153 227 129 183)
