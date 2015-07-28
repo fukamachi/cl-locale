@@ -12,6 +12,7 @@
         :cl-locale.core
         :cl-locale.reader
         :cl-locale.syntax)
+  (:nicknames :locale)
   (:export :*default-locale*
            :*locale*
            :*dictionary-tables*
