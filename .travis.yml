@@ -13,6 +13,7 @@ env:
 
 install:
   - curl -L https://raw.githubusercontent.com/snmsts/roswell/release/scripts/install-for-ci.sh | sh
+  - git clone https://github.com/fukamachi/cl-coveralls ~/lisp/cl-coveralls
   - ros install prove
 
 before_script:
