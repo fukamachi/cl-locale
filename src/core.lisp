@@ -90,3 +90,9 @@ Example:
                    (gethash string arnesi:it))
              string)
          params))
+
+@export
+(defun i18n-unformatted (string &key (locale *locale*) (dictionary (current-dictionary)))
+  (aand (not (eq locale *default-locale*))
+           (gethash locale dictionary)
+           (gethash string arnesi:it)))

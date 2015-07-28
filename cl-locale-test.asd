@@ -13,10 +13,14 @@
 
 (defsystem cl-locale-test
   :depends-on (:cl-locale
-               :cl-locale-syntax
                :cl-syntax
-               :cl-test-more
-               :flexi-streams)
+               :flexi-streams
+               :prove)
   :components ((:module "t"
                 :components
-                ((:file "locale")))))
+                ((:test-file "locale"))))
+  :description "Test system for cl-locale."
+  :defsystem-depends-on (:prove-asdf)
+  :perform (test-op :after (op c)
+                    (funcall (intern #.(string :run-test-system) :prove-asdf) c)
+                    (asdf:clear-system c)))

@@ -18,7 +18,7 @@
 (in-package :cl-locale-asd)
 
 (defsystem cl-locale
-  :version "0.1"
+  :version "0.1.1"
   :author "Eitarow Fukamachi"
   :depends-on (:anaphora
                :arnesi
@@ -27,9 +27,10 @@
                :cl-syntax-annot)
   :license "LLGPL"
   :components ((:module "src"
-                :components ((:file "locale" :depends-on ("core" "reader"))
+                :components ((:file "locale" :depends-on ("core" "reader" "syntax"))
                              (:file "core")
-                             (:file "reader" :depends-on ("core")))))
+                             (:file "reader" :depends-on ("core"))
+                             (:file "syntax" :depends-on ("reader")))))
   :description "Simple i18n library for Common Lisp"
   :long-description
   #.(with-open-file (stream (merge-pathnames

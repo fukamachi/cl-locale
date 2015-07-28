@@ -15,32 +15,25 @@
 
 (use-syntax :annot)
 
-(defun read-lisp-string (input)
-  "Parse a Lisp string. Expects “input” to point to the
-  first character after the leading double quote.
-  Slick version by Xach."
-  (with-output-to-string (output)
-    (loop
-      (let ((char (read-char input)))
-        (case char
-          (#\\
-           (setf char (read-char input)))
-          (#\"
-           (return)))
-        (write-char char output)))))
+@export
+(defun i18n-reader (stream char numarg)
+  (declare (ignore char numarg))
+  (let ((ch (peek-char t stream))
+        (args (read stream)))
+    (case ch
+      (#\" `(i18n ,args))
+      (#\( `(i18n ,(car args) :params (list ,@(cdr args))))
+      (t (error "i18n reader must precede a list or a double-quoted string.: ~A" ch)))))
 
-(defun locale-syntax-reader (stream char arg)
-  (declare (ignore arg char))
-  (let ((ch (read-char stream)))
-  (case ch
-    (#\" `(i18n ,(read-lisp-string stream)))
-    (#\( (let ((body (read-delimited-list #\) stream)))
-           `(i18n ,(car body) :params (list ,@(cdr body)))))
-    (t (error "i18n reader must precede a list or a double-quoted string.: ~A" ch)))))
+@export
+(defun i18n-unformatted-reader (stream char numarg)
+  (declare (ignore char numarg))
+  `(i18n-unformatted-reader ,(read stream)))
 
 (defun %enable-locale-syntax ()
   (setf *readtable* (copy-readtable))
-  (set-macro-character #\@ #'locale-syntax-reader))
+  (set-dispatch-macro-character #\# #\i #'i18n-reader)
+  (set-dispatch-macro-character #\# #\l #'i18n-unformatted-reader))
 
 @export
 (defmacro enable-locale-syntax ()
