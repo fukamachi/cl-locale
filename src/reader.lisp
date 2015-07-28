@@ -28,7 +28,7 @@
 @export
 (defun i18n-unformatted-reader (stream char numarg)
   (declare (ignore char numarg))
-  `(i18n-unformatted-reader ,(read stream)))
+  `(i18n-unformatted ,(read stream)))
 
 (defun %enable-locale-syntax ()
   (setf *readtable* (copy-readtable))
