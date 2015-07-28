@@ -44,4 +44,4 @@
                                :fill-pointer t)))
           (setf (fill-pointer seq) (read-sequence seq stream))
           seq)))
-  :in-order-to ((test-op (load-op cl-locale-test))))
+  :in-order-to ((test-op (test-op cl-locale-test))))
