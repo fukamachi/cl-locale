@@ -92,7 +92,7 @@ Example:
          params))
 
 @export
-(defun l10n (string &key (locale *locale*) (dictionary (current-dictionary)))
+(defun l18n-unformatted (string &key (locale *locale*) (dictionary (current-dictionary)))
   (aand (not (eq locale *default-locale*))
            (gethash locale dictionary)
            (gethash string arnesi:it)))

@@ -11,11 +11,11 @@
   (:use :cl)
   (:import-from :cl-locale.reader
                 :i18n-reader
-                :l10n-reader)
+                :i18n-unformatted-reader)
   (:export :locale-syntax))
 (in-package :cl-locale.syntax)
 
 (syntax:defsyntax locale-syntax
   (:merge :standard)
   (:dispatch-macro-char #\# #\i #'i18n-reader)
-  (:dispatch-macro-char #\# #\l #'l10n-reader))
+  (:dispatch-macro-char #\# #\l #'i18n-unformatted-reader))

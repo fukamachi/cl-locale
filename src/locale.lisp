@@ -19,8 +19,8 @@
            :define-dictionary
            :current-dictionary
            :i18n
-           :l10n
+           :i18n-unformatted
            :enable-locale-syntax
            :locale-syntax
            :i18n-reader
-           :l10n-reader))
+           :i18n-unformatted-reader))
